@@ -26,11 +26,13 @@ void Setup(){
     fruitY=rand()%height;
     score=0;
 }
+
 // Moves the cursor to a given position in console (used to redraw efficiently)
 void gotoXY(int x, int y){
     COORD pos={(SHORT)x, (SHORT)y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
+
 // Draws the game board each frame
 void Draw(){
     gotoXY(0, 0); // Set cursor to top-left to overwrite previous frame
@@ -58,11 +60,13 @@ void Draw(){
         }
         cout<<endl;
     }
+    
     // Draw bottom wall
     for(int i=0; i<width+2; i++) cout<<"#";
     cout<<"\nScore: "<<score<<"\n";
     cout<<"Use W A S D to move. Press X to quit.\n";
 }
+
 // Handles user input
 void Input(){
     if(_kbhit()){ // Check if key was pressed
@@ -75,6 +79,7 @@ void Input(){
         }
     }
 }
+
 // Updates game logic every frame
 void Logic(){
     // Move tail: shift positions of each tail segment
@@ -113,6 +118,7 @@ void Logic(){
         nTail++;                       // Increase tail length
     }
 }
+
 int main(){
     srand(time(0)); // Seed for random number generator
     Setup();        // Initialize game variables
@@ -122,6 +128,7 @@ int main(){
     GetConsoleCursorInfo(hOut, &cursorInfo);
     cursorInfo.bVisible = false;
     SetConsoleCursorInfo(hOut, &cursorInfo);
+    
     // Game loop runs until gameOver becomes true
     while(!gameOver){
         Draw();      // Render the game board
