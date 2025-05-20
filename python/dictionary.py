@@ -1,7 +1,11 @@
+# need to install requests module
+# open terminal on vs code and run:
+# pip install requests
+
 import requests
 
 def get_definition(word):
-    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"  #free dictionary api
     try:
         response = requests.get(url, timeout=5)
         if response.status_code == 200:
